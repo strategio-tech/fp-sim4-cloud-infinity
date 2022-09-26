@@ -1,0 +1,13 @@
+name: Backend (Java API) workflow - Build and deploy Java API to EC2 instance
+
+on: 
+  push:
+    branches:
+      - "main"
+    paths:
+      - "backend/**"
+  pull_request:
+    branches: 
+      - "main"  
+    paths:
+      - "backend/**"
