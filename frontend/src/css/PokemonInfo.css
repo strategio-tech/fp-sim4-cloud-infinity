@@ -1,0 +1,133 @@
+.pokemon-info {
+    background-color: #88D0C4;
+}
+
+/* Set all colors for backgrounds here */
+.black {
+    background-color: #2F2F29;
+}
+
+.blue {
+    background-color: #88BBD0;
+}
+
+.brown {
+    background-color: #D0AF88;
+}
+
+.gray {
+    background-color: #A3A2A1;   
+}
+
+.green {
+    background-color: #88D0C4;
+}
+
+.pink {
+    background-color: #D0889A;
+}
+
+.purple {
+    background-color: #BE88D0;
+}
+
+.red {
+    background-color: #D08888;
+}
+
+.white {
+
+}
+
+.yellow {
+    background-color: #CFD088;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+/* FIXME: Hide overlay in div only. The bottom part should be cut off */
+.container::before {
+    position: absolute;
+    content: '';
+    width: 211px;
+    height: 364px;
+
+    /* FIXME: Trying to get it to auto calc the height */
+    /* height: calc(100% - 58.9%); */
+    background-image: url('../assets/overlay.svg');
+    background-repeat: no-repeat;
+
+    /* NOTE: Used to check the bounds of the image */
+    /* outline: 1px solid coral; */
+
+    top: 6em;
+
+    /* Fixed the positioning of the overlay. It sits all the way to the right at 100% minus its width. This allows it to always be sitting on the right of the screen */
+    left: calc(100% - 211px);
+}
+
+.identity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    margin-top: 2em;
+}
+
+.identity_left-side {
+    display: flex;
+    align-items: center;
+}
+
+.identity_right-side {
+    display: flex;
+    align-items: center;
+}
+
+.pokemon-name {
+    color: #FFFFFF;
+}
+
+.pokemon-id {
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.pokemon-image {
+    width: 217px;
+    height: 217px;
+
+    /* NOTE: This causes the image to "float" between the two divs */
+    position: relative;
+    top: 1.5em;
+}
+
+.legendary {
+    width: 30px;
+    height: 30px;
+
+    margin-left: 0.25em;
+}
+
+.mythical {
+    width: 28px;
+    height: 34px;
+    
+    margin-left: 0.25em;
+}
+
+.pokemon_img {
+    width: 144px;
+    height: 144px;
+}
