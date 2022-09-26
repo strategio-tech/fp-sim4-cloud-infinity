@@ -21,7 +21,9 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3
-      - run: npm install
-      - run: npm run build
+      - name: Build install node modules and build project
+        run: npm install
+        run: npm run build
+        working-directory: frontend
 
 
