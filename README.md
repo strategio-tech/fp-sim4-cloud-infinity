@@ -3,7 +3,6 @@
 
 This is an app using a complete CI/CD pipeline.
 
-
 ## Authors
 
 - [Clayton Brady](https://github.com/Yotigify)
