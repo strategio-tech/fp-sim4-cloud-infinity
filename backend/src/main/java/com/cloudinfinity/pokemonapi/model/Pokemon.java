@@ -1,11 +1,24 @@
 package com.cloudinfinity.pokemonapi.model;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "pokemon")
@@ -13,6 +26,7 @@ public class Pokemon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     private long id;
 
     @Column(name="pokemonID")
@@ -43,10 +57,26 @@ public class Pokemon {
     private String color;
 
     @Column(name="image")
+    // @Lob
     private String image;
 
-    public Pokemon(long id, long pokemonID, String name, String description, int height, int weight, boolean isLegendary, boolean isMythical, String evolutionChainURL, String color, String image) {
-        this.id = id;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "pokemon_types", joinColumns = { @JoinColumn(name = "pokemon_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "type_id") })
+    private Set<Type> types = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "pokemon_id")
+    private Set<Stat> stats = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "pokemon_id")
+    private Set<Ability> abilities = new HashSet<>();
+
+    public Pokemon(long pokemonID, String name, String description, long height, long weight, boolean isLegendary, boolean isMythical, String evolutionChainURL, String color, String image) {
         this.pokemonID = pokemonID;
         this.name = name;
         this.description = description;
@@ -60,9 +90,7 @@ public class Pokemon {
     }
 
     public Pokemon() {
-        this(-1, -1, "", "", -1, -1, false, false, "", "", "");
     }
-
 
     public long getId() {
         return this.id;
@@ -159,5 +187,100 @@ public class Pokemon {
     public void setImage(String image) {
         this.image = image;
     }
-    
+
+    public Set<Type> getTypes() {
+        return this.types;
+    }
+
+    public void setTypes(Set<Type> types) {
+        this.types = types;
+    }
+
+    public Set<Stat> getStats() {
+        return this.stats;
+    }
+
+    public void setStats(Set<Stat> stats) {
+        this.stats = stats;
+    }
+
+    public Set<Ability> getAbilities() {
+        return this.abilities;
+    }
+
+    public void setAbilities(Set<Ability> abilities) {
+        this.abilities = abilities;
+    }
+
+    public void addType(Type type) {
+        this.types.add(type);
+        type.getPokemon().add(this);
+    }
+
+    public void removeType(long typeId) {
+        Type type = this.types.stream().filter(t -> t.getId() == typeId).findFirst().orElse(null);
+
+        if(type != null) {
+            this.types.remove(type);
+            type.getPokemon().remove(this);
+        }
+    }
+
+    public void addStat(Stat stat) {
+        this.stats.add(stat);
+    }
+
+    public void removeStat(long statId) {
+        Stat stat = this.stats.stream().filter(s -> s.getId() == statId).findFirst().orElse(null);
+
+        if(stat != null) {
+            this.stats.remove(stat);
+        }
+    }
+
+    public void addAbility(Ability ability) {
+        this.abilities.add(ability);
+    }
+
+    public void removeAbility(long abilityId) {
+        Ability ability = this.abilities.stream().filter(a -> a.getId() == abilityId).findFirst().orElse(null); 
+
+        if(ability != null) {
+            this.abilities.remove(ability);
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Pokemon)) {
+            return false;
+        }
+        Pokemon pokemon = (Pokemon) o;
+        return id == pokemon.id && pokemonID == pokemon.pokemonID && Objects.equals(name, pokemon.name) && Objects.equals(description, pokemon.description) && height == pokemon.height && weight == pokemon.weight && isLegendary == pokemon.isLegendary && isMythical == pokemon.isMythical && Objects.equals(evolutionChainURL, pokemon.evolutionChainURL) && Objects.equals(color, pokemon.color) && Objects.equals(image, pokemon.image);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, pokemonID, name, description, height, weight, isLegendary, isMythical, evolutionChainURL, color, image);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", pokemonID='" + getPokemonID() + "'" +
+            ", name='" + getName() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", height='" + getHeight() + "'" +
+            ", weight='" + getWeight() + "'" +
+            ", isLegendary='" + isIsLegendary() + "'" +
+            ", isMythical='" + isIsMythical() + "'" +
+            ", evolutionChainURL='" + getEvolutionChainURL() + "'" +
+            ", color='" + getColor() + "'" +
+            ", image='" + getImage() + "'" +
+            "}";
+    }
+
 }
