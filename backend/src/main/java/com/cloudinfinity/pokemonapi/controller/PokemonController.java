@@ -20,7 +20,7 @@ public class PokemonController {
 
     @GetMapping("/{pokemonID}")
     public ResponseEntity<Pokemon> findPokemonById(@PathVariable(value = "pokemonID") long pokemonID) {
-        if(pokemonID < 0 || pokemonID > 900) {
+        if(pokemonID < 1 || pokemonID > 906) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 

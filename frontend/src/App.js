@@ -96,7 +96,7 @@ const App = () => {
     }
     if (!isNaN(text)) {
       let id = parseInt(text);
-      if (id > 0 && id < 898) {
+      if (id > 0 && id < 906) {
         let name = pokemon.getName(parseInt(text));
         fetchPokemonData(name);
         navigate(`/pokemon/${id}`);
