@@ -14,7 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "types")
@@ -36,13 +38,13 @@ public class Type {
             CascadeType.MERGE
     }, mappedBy = "types")
     @JsonIgnore
+    @JsonManagedReference
     private Set<Pokemon> pokemon = new HashSet<>();
 
     public Type() {
     }
 
-    public Type(long id, long slot, String name, Set<Pokemon> pokemon) {
-        this.id = id;
+    public Type(long slot, String name, Set<Pokemon> pokemon) {
         this.slot = slot;
         this.name = name;
         this.pokemon = pokemon;

@@ -32,8 +32,7 @@ public class Ability {
     public Ability() {
     }
 
-    public Ability(long id, String name, boolean isHidden, long slot) {
-        this.id = id;
+    public Ability(String name, boolean isHidden, long slot) {
         this.name = name;
         this.isHidden = isHidden;
         this.slot = slot;

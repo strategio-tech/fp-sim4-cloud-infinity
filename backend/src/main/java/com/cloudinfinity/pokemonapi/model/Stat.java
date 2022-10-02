@@ -32,8 +32,7 @@ public class Stat {
     public Stat() {
     }
 
-    public Stat(long id, long baseStat, long effort, String name) {
-        this.id = id;
+    public Stat(long baseStat, long effort, String name) {
         this.baseStat = baseStat;
         this.effort = effort;
         this.name = name;

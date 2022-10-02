@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.cloudinfinity.pokemonapi.model.Pokemon;
 import com.cloudinfinity.pokemonapi.repo.PokemonRepository;
+import com.cloudinfinity.pokemonapi.utils.ThirdParty;
 
 @RestController
 @RequestMapping("/api/pokemon")
@@ -29,19 +30,13 @@ public class PokemonController {
             // The pokemon is not found
             // Call third-party API
             System.out.println("This pokemon is not in the database: " + pokemonID);
+            
+            Pokemon pokemonFromAPI = ThirdParty.getPokemon(pokemonID);
+            pokemonRepository.save(pokemonFromAPI);
 
+            return new ResponseEntity<>(pokemonFromAPI, HttpStatus.OK);
         }
 
-        return new ResponseEntity<>(pokemon.orElse(null), HttpStatus.OK);
-    }
-
-
-    @GetMapping("/test/1")
-    public void save() {
-        Pokemon jordan = new Pokemon();
-
-        jordan.setName("Jordan");
-
-        pokemonRepository.save(jordan);
+        return new ResponseEntity<>(pokemon.get(), HttpStatus.OK);
     }
 }
