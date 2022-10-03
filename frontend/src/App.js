@@ -23,8 +23,9 @@ const App = () => {
   const search = useSelector((state) => state.search);
   const searchBar = useSelector((state) => state.searchBar);
 
-  const baseURL = "http://localhost:8080/api/pokemon/";
+  const baseURL = "http://18.205.172.254/api/pokemon/";
 
+  // FIXME: Stop triple re-rendering
   const fetchPokemonData = (name) => {
     let pokemonID = pokemon.getId(name);
     let pokeData = {};
@@ -44,8 +45,6 @@ const App = () => {
       pokeData.evolution_chain_URL = res.data.evolutionChainURL;
       pokeData.color = res.data.color;
       pokeData.default = false;
-      console.log(pokeData);
-
       // FIXME: ADD CHAINS
       dispatch(setPokemonData(pokeData));
       dispatch(setSearch(""));
