@@ -1,6 +1,8 @@
 package com.cloudinfinity.pokemonapi.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -38,13 +39,12 @@ public class Type {
             CascadeType.MERGE
     }, mappedBy = "types")
     @JsonIgnore
-    @JsonManagedReference
-    private Set<Pokemon> pokemon = new HashSet<>();
+    private List<Pokemon> pokemon = new ArrayList<>();
 
     public Type() {
     }
 
-    public Type(long slot, String name, Set<Pokemon> pokemon) {
+    public Type(long slot, String name, List<Pokemon> pokemon) {
         this.slot = slot;
         this.name = name;
         this.pokemon = pokemon;
@@ -74,11 +74,11 @@ public class Type {
         this.name = name;
     }
 
-    public Set<Pokemon> getPokemon() {
+    public List<Pokemon> getPokemon() {
         return this.pokemon;
     }
 
-    public void setPokemon(Set<Pokemon> pokemon) {
+    public void setPokemon(List<Pokemon> pokemon) {
         this.pokemon = pokemon;
     }
 
@@ -97,7 +97,7 @@ public class Type {
         return this;
     }
 
-    public Type pokemon(Set<Pokemon> pokemon) {
+    public Type pokemon(List<Pokemon> pokemon) {
         setPokemon(pokemon);
         return this;
     }

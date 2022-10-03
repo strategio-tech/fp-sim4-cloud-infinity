@@ -1,6 +1,8 @@
 package com.cloudinfinity.pokemonapi.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -71,8 +73,7 @@ public class Pokemon {
     })
     @JoinTable(name = "pokemon_types", joinColumns = { @JoinColumn(name = "pokemon_id") }, inverseJoinColumns = {
             @JoinColumn(name = "type_id") })
-    @JsonBackReference
-    private Set<Type> types = new HashSet<>();
+    private List<Type> types = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "pokemon_id")
@@ -203,11 +204,11 @@ public class Pokemon {
         this.image = image;
     }
 
-    public Set<Type> getTypes() {
+    public List<Type> getTypes() {
         return this.types;
     }
 
-    public void setTypes(Set<Type> types) {
+    public void setTypes(List<Type> types) {
         this.types = types;
     }
 

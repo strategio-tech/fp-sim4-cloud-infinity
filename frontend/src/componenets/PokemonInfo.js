@@ -42,7 +42,7 @@ const PokemonInfo = (props) => {
                     {
                         // Gets only the first 2 tags out of the types
                         pokemonData.types.slice(0, 2).map((tag, index) => (
-                            <Tag key={index} type={tag.type.name} />
+                            <Tag key={index} type={tag.name} />
                         ))
                     }
                 </div>
