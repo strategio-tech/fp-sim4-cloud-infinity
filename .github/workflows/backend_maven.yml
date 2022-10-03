@@ -9,6 +9,11 @@ on:
       - "main"
     paths:
       - "backend/**"
+  pull-request:
+    branches:
+      - "main"
+    paths:
+      - "backend/**"
 
 jobs:
   build:
