@@ -41,7 +41,7 @@ const Stats = (props) => {
     const getAbilities = () => {
         let final = '';
         pokemonData.abilities.map((item, index) => {
-            final += `${capitalize(item.ability.name)}${item.is_hidden ? " (Hidden Ability), " : ", "}`;
+            final += `${capitalize(item.name)}${item.is_hidden ? " (Hidden Ability), " : ", "}`;
             if(index === pokemonData.abilities.length - 1) {
                 final = final.substring(0, final.length - 2);
             }
@@ -88,7 +88,7 @@ const Stats = (props) => {
                 <h1 className={`stat-section__header ${pokemonData.color}_header`}>Stats</h1>    
                 {
                     pokemonData.stats.map((item, index) => (
-                        <Stat key={index} name={fixName(item.stat.name)} value={`${item.base_stat} (base)`} />
+                        <Stat key={index} name={fixName(item.name)} value={`${item.base_stat} (base)`} />
                     ))
                 }
             </div>

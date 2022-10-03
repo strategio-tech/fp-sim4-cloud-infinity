@@ -1,16 +1,17 @@
 package com.cloudinfinity.pokemonapi.controller;
 
+import java.lang.StackWalker.Option;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.cloudinfinity.pokemonapi.model.Pokemon;
 import com.cloudinfinity.pokemonapi.repo.PokemonRepository;
+import com.cloudinfinity.pokemonapi.utils.ThirdParty;
 
+@CrossOrigin(origins= "http://localhost:3000")
 @RestController
 @RequestMapping("/api/pokemon")
 public class PokemonController {
@@ -20,21 +21,23 @@ public class PokemonController {
 
     @GetMapping("/{pokemonID}")
     public ResponseEntity<Pokemon> findPokemonById(@PathVariable(value = "pokemonID") long pokemonID) {
-        
-        // Optional<Pokemon> pokemon = pokemonRepository.findByPokemonID(id);
-//        Pokemon p = pokemonRepository.findByPokemonID(pokemonID)
-//            .orElseThrow(() -> new RuntimeException("Pokemon not found"));
+        if(pokemonID < 1 || pokemonID > 906) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-//        return new ResponseEntity<>(p, HttpStatus.OK);
+        Optional<Pokemon> pokemon = pokemonRepository.findByPokemonID(pokemonID);
 
-        Pokemon poke = new Pokemon();
-        poke.setName("Jordan");
+        if(!pokemon.isPresent()) {
+            // The pokemon is not found
+            // Call third-party API
+            System.out.println("This pokemon is not in the database: " + pokemonID);
+            
+            Pokemon pokemonFromAPI = ThirdParty.getPokemon(pokemonID);
+            pokemonRepository.save(pokemonFromAPI);
 
-        return new ResponseEntity<>(poke, HttpStatus.OK);
-    }
+            return new ResponseEntity<>(pokemonFromAPI, HttpStatus.OK);
+        }
 
-    @GetMapping("/test/hi")
-    public String test() {
-        return "hi";
+        return new ResponseEntity<>(pokemon.get(), HttpStatus.OK);
     }
 }

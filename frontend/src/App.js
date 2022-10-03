@@ -23,62 +23,33 @@ const App = () => {
   const search = useSelector((state) => state.search);
   const searchBar = useSelector((state) => state.searchBar);
 
-  const baseNormalURL = "https://pokeapi.co/api/v2/pokemon/";
-  const baseSpeciesURL = "https://pokeapi.co/api/v2/pokemon-species/";
+  const baseURL = "http://localhost:8080/api/pokemon/";
 
   const fetchPokemonData = (name) => {
     let pokemonID = pokemon.getId(name);
     let pokeData = {};
-    axios
-      .all([
-        axios.get(`${baseNormalURL}${pokemonID}`),
-        axios.get(`${baseSpeciesURL}${pokemonID}`),
-      ])
-      // TODO: Change this to just store all of the data in state (e.g. pokeData.data = [...data1, ...data2])
-      .then(
-        axios.spread((data1, data2) => {
-          
-          pokeData.name = data1.data.name;
-          pokeData.names = data1.data.names;
-          pokeData.id = data1.data.id;
-          pokeData.types = data1.data.types;
-          pokeData.height = data1.data.height;
-          pokeData.weight = data1.data.weight;
-          pokeData.stats = data1.data.stats;
-          pokeData.base_experience = data1.data.base_experience;
-          pokeData.sprites = data1.data.sprites;
-          pokeData.image = data1.data.sprites.other.dream_world.front_default;
-          pokeData.abilities = data1.data.abilities;
-          pokeData.stats = data1.data.stats;
+    axios.get(baseURL + pokemonID).then((res) => {
+      pokeData.id = res.data.pokemonID
+      pokeData.name = res.data.name;
+      pokeData.height = res.data.height;
+      pokeData.weight = res.data.weight;
+      pokeData.types = res.data.types;
+      pokeData.stats = res.data.stats;
+      pokeData.abilities = res.data.abilities;
+      pokeData.image = res.data.image;
+      pokeData.description = res.data.description;
+      pokeData.species = res.data.species;
+      pokeData.is_legendary = res.data.isLegendary;
+      pokeData.is_mythical = res.data.isMythical;
+      pokeData.evolution_chain_URL = res.data.evolutionChainURL;
+      pokeData.color = res.data.color;
+      pokeData.default = false;
+      console.log(pokeData);
 
-          // Gets the description in English. Some pokemon have descriptions that are not
-          // English first. This goes through the array and finds the first description set that is
-          // in English.
-          pokeData.description = data2.data.flavor_text_entries.find((set) => {
-            return set.language.name === "en";
-          }).flavor_text; // description of our pokemon
-          pokeData.descriptions = data2.data.flavor_text_entries;
-          pokeData.species = data2.data.genera.find((set) => {
-            return set.language.name === "en";
-          }).genus;
-          pokeData.speciesSet = data2.data.genera;
-          pokeData.is_legendary = data2.data.is_legendary;
-          pokeData.is_mythical = data2.data.is_mythical;
-          pokeData.evolution_chain_URL = data2.data.evolution_chain.url;
-
-          pokeData.habitat = data2.data.habitat;
-          pokeData.generation = data2.data.generation;
-          pokeData.color = data2.data.color.name;
-
-          return axios.get(pokeData.evolution_chain_URL);
-        })
-      )
-      .then((response) => {
-        pokeData.chain = response.data.chain;
-        pokeData.default = false;
-        dispatch(setPokemonData(pokeData));
-        dispatch(setSearch(""));
-      });
+      // FIXME: ADD CHAINS
+      dispatch(setPokemonData(pokeData));
+      dispatch(setSearch(""));
+    });
   };
 
   const onSubmitSearch = (event) => {
@@ -96,7 +67,7 @@ const App = () => {
     }
     if (!isNaN(text)) {
       let id = parseInt(text);
-      if (id > 0 && id < 898) {
+      if (id > 0 && id < 906) {
         let name = pokemon.getName(parseInt(text));
         fetchPokemonData(name);
         navigate(`/pokemon/${id}`);
