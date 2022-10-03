@@ -6,7 +6,7 @@ on:
       - "main"
     paths:
       - "frontend/**"
-  pull-request:
+  pull_request:
     branches:
       - "main"
     paths:
