@@ -88,7 +88,7 @@ const Stats = (props) => {
                 <h1 className={`stat-section__header ${pokemonData.color}_header`}>Stats</h1>    
                 {
                     pokemonData.stats.map((item, index) => (
-                        <Stat key={index} name={fixName(item.name)} value={`${item.base_stat} (base)`} />
+                        <Stat key={index} name={fixName(item.name)} value={`${item.baseStat} (base)`} />
                     ))
                 }
             </div>
