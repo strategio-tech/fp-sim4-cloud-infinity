@@ -11,7 +11,7 @@ import com.cloudinfinity.pokemonapi.model.Pokemon;
 import com.cloudinfinity.pokemonapi.repo.PokemonRepository;
 import com.cloudinfinity.pokemonapi.utils.ThirdParty;
 
-@CrossOrigin(origins= "http://localhost:3000")
+@CrossOrigin(origins= "http://pokedex-bkt.s3-website-us-east-1.amazonaws.com")
 @RestController
 @RequestMapping("/api/pokemon")
 public class PokemonController {
