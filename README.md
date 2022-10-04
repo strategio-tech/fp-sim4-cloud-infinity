@@ -95,7 +95,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 Finally, in ```PokemonController.java```, you need to change the ```@CrossOrigin``` annotation
 
-```
+```java
 @CrossOrigin(origins= "http://pokedex-bkt.s3-website-us-east-1.amazonaws.com")
 @RestController
 @RequestMapping("/api/pokemon")
@@ -104,7 +104,7 @@ public class PokemonController {
 
 to 
 
-```
+```java
 @CrossOrigin(origins= "http://localhost:3000")
 @RestController
 @RequestMapping("/api/pokemon")
