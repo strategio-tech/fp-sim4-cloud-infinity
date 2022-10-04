@@ -20,14 +20,13 @@ class PokemonapiApplicationTests {
 	
 	@BeforeAll
 	public void setUp() {
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-	      ChromeOptions options = new ChromeOptions();
-	      options.addArguments("--no-sandbox");
-	      options.addArguments("--disable-dev-shm-usage");
-	      options.addArguments("--headless");
-	      driver = new ChromeDriver(options);
-	      // driver = new FirefoxDriver();
-		
+		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--no-sandbox");
+		options.addArguments("--disable-dev-shm-usage");
+		options.addArguments("--headless");
+		driver = new ChromeDriver(options);
+		// driver = new FirefoxDriver();
 	}
 	
 	@Test
