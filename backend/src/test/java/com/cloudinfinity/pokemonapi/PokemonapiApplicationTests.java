@@ -2,12 +2,16 @@ package com.cloudinfinity.pokemonapi;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.junit.AfterClass;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +24,8 @@ class PokemonapiApplicationTests {
 	
 	@BeforeAll
 	public void setUp() {
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+		// System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--no-sandbox");
 		options.addArguments("--disable-dev-shm-usage");
@@ -61,6 +66,11 @@ class PokemonapiApplicationTests {
 	}
 	
 	
-
+	@AfterClass
+	public void tearDown() {
+		if (driver != null) {
+			driver.quit();
+		}
+	}
 
 }
