@@ -30,10 +30,6 @@ jobs:
         java-version: '17'
         distribution: 'adopt'
         cache: maven
-    - name: Install Google Chrome # Using shell script to install Google Chrome
-      run: |
-       chmod +x ./backend/scripts/InstallChrome.sh
-        ./backend/scripts/InstallChrome.sh
     - name: Test and Build with Maven
       working-directory: backend
       run: mvn -B package --file pom.xml test
