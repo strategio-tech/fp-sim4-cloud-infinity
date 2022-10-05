@@ -25,7 +25,7 @@ class PokemonapiApplicationTests {
 	 @BeforeAll
 	 public void setUp() {
 	 	System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-	 	 ebDriverManager.chromedriver().setup();
+	 	// WebDriverManager.chromedriver().setup();
 	 	ChromeOptions options = new ChromeOptions();
 	 	options.addArguments("--no-sandbox");
 	 	options.addArguments("--disable-dev-shm-usage");
