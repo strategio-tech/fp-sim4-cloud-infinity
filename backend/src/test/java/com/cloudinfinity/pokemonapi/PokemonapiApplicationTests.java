@@ -20,7 +20,7 @@ import org.openqa.selenium.chrome.*;
 @NotThreadSafe
 @TestInstance(value = Lifecycle.PER_CLASS)
 class PokemonapiApplicationTests {
-	 private WebDriver driver;
+	/* private WebDriver driver;
 	
 	 @BeforeAll
 	 public void setUp() {
@@ -60,5 +60,6 @@ class PokemonapiApplicationTests {
 		
 
 	 }
+	 */
 
 }
