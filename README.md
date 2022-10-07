@@ -26,6 +26,10 @@ This app was built to be deployed in a cloud envirnoment such as AWS.
   - http://pokedex-bkt.s3-website-us-east-1.amazonaws.com/pokemon/entei
 - Mobile version
 
+## Architecture Diagram
+
+![download](https://user-images.githubusercontent.com/77266395/194618246-5e178f77-9f96-4353-8a6c-46a3f9ef91ec.png)
+
 
 ## Deployment
 
