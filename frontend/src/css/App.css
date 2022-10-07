@@ -1,0 +1,225 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.page {
+  flex-grow: 1;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.start_color {
+  background-color: #A84949;
+}
+
+.pokemon_logo {
+  width: 295px;
+  height: 106px;
+}
+
+.pokedex {
+  color: #FFFFFF;
+  margin-top: 0.25em;
+}
+
+.end {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* FIXME: Add some space between the stats and the bottom bar */
+  margin-top: 1em;
+
+  /* HACK: I'm using this instead of margin-bottom to get the spacing on the end of the page */
+  padding-bottom: 1em;
+}
+
+nav {
+  width: 100%;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  background-color: #D86666;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#back_arrow {
+  margin-left: 0.75em;
+}
+
+.logoImg {
+  margin-left: 1em;
+}
+
+.logoImg_diff {
+  margin-left: 0.5em;
+}
+
+#logoText {
+  color: #FFFFFF;
+  font-weight: 700;
+
+  font-size: 1.5rem;
+  margin-left: 0.5em;
+}
+
+#board {
+  width: 100%;
+  height: 100%;
+}
+
+.section-header {
+  font-size: 2.25rem;
+}
+
+.stats-table {
+  display: flex;
+  width: 100%;
+  max-width: 376px;
+  height: 96px;
+  
+  align-items: center;
+
+  /* Was here for debugging purposes */
+  /* margin-top: 1em;
+  margin-left: 1em; */
+
+  /* padding: 1.25em; */
+
+  padding-left: 1.25em;
+  padding-right: 0.5em;
+
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.25); 
+  box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.25);
+}
+
+.in-table {
+  width: 50%;
+}
+
+.in-table:first-child {
+  margin-left: 0.5em;
+}
+
+.stat-title {
+  color: #B7B7B7;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.1em;
+}
+
+.stat-data {
+  font-size: 1.5rem;
+  font-weight: 700;  
+}
+
+#more-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 20%;
+}
+
+#info {
+  width: 90%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 2.25em;
+}
+
+.section {
+  margin-top: 0.75em;
+  width: 100%;
+  max-width: 376px;
+}
+
+#searchBar {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+}
+
+#searchText {
+  width: 70%;
+  margin-right: 0.5em;
+
+  font-size: 1.25rem;
+
+  padding-left: 0.75em;
+  padding-right: 0.45em;
+  
+  background-color: #FBFBFB;
+
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.230);
+}
+
+#searchText:focus {
+  outline: none;
+}
+
+#searchBtn {
+  width: 35%;
+  height: 66px;
+
+  color: white;
+  font-weight: 700;
+  font-size: 1.75rem;
+
+  background-color: #D08888;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  border-radius: 10px;
+}
+
+#searchBtn:hover {
+  opacity: 80%;
+}
+
+#random:active {
+  background-color: #a16a6a;
+}
+
+@media(min-width: 600px) {
+
+  #searchBtn {
+    font-size: 2.25rem;
+  }
+  
+}

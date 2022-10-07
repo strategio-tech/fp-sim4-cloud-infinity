@@ -1,0 +1,43 @@
+.pokemon-img {
+    width: 144px;
+    height: 144px;
+}
+
+.pokemon-current-form {
+    margin-right: 1em;
+}
+
+.pokemon_evolved-form {
+    margin-left: 1em;
+}
+
+.level-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.65em;
+    width: 80px;
+  
+    color: #88D0C4;
+    font-size: 0.875rem;
+    font-weight: bold;
+  
+    border-bottom: 3px solid #D8D8D8;
+  }
+
+  .evolution {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* outline: 1px solid coral; */
+      padding: 0.5em;
+  }
+
+  .evolution:first-child {
+    margin-bottom: 1em;
+  }
+
+  /* FIXME: Needs to be optimized for smaller screens. The container is causing side scrolling */
+  .evolution_table {
+      margin-top: 1.5em;
+  }

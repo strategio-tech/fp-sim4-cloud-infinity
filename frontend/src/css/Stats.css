@@ -1,0 +1,76 @@
+#stats {
+    width: 90%;
+    margin: 0 auto;
+
+    padding-top: 1em;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.stat-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-section:first-child {
+    margin-top: 0.75em;
+}
+
+.stat-section:not(:first-child) {
+    margin-top: 0.75em;
+}
+
+.stat-section__header {
+    font-size: 1.5rem;
+    margin-bottom: 0.25em;
+    color: #88D0C4;
+}
+
+.black_header {
+    color: #2F2F29;
+}
+
+.blue_header {
+    color: #88BBD0;
+}
+
+.brown_header {
+    color: #D0AF88;
+}
+
+.gray_header {
+    color: #A3A2A1;   
+}
+
+.green_header {
+    color: #88D0C4;
+}
+
+.pink_header {
+    color: #D0889A;
+}
+
+.purple_header {
+    color: #BE88D0;
+}
+
+.red_header {
+    color: #D08888;
+}
+
+.yellow_header {
+    color: #CFD088;
+}
+
+.stat-1 {
+    font-size: 1.125rem;
+}
+
+.stat-1:not(:last-child) {
+    margin-bottom: 0.625rem;
+}

@@ -1,0 +1,99 @@
+.tag-container {
+    display: flex;
+    width: 100%;
+}
+
+/* TODO: Add all the rest of the coloring for each tag */
+.tag {
+    width: 96px;
+    height: 29px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.25);
+
+    /* Color for Normal tag (default) */
+    background-color: #A8A87B;
+}
+
+/* Targets all of the tag components except the first one. We are trying to give them some space in our tag container */
+.tag:not(:first-child) {
+    margin-left: 0.35em;
+}
+
+.fire-tag {
+    background-color: #EE803B;
+}
+
+.water-tag {
+    background-color: #6A92ED;
+}
+
+.grass-tag {
+    background-color: #7BC757;
+}
+
+.electric-tag {
+    background-color: #F7CF43;
+}
+
+.icy-tag {
+    background-color: #9AD8D8;
+}
+
+.fighting-tag {
+    background-color: #BE322E;
+}
+
+.poison-tag {
+    background-color: #9F449F;
+}
+
+.ground-tag {
+    background-color: #DFBF6E;
+}
+
+.flying-tag {
+    background-color: #A893EE;
+}
+
+.psyhic-tag {
+    background-color: #F65B89;
+}
+
+.bug-tag {
+    background-color: #A8B732;
+}
+
+.rock-tag {
+    background-color: #B89F41;
+}
+
+.ghost-tag {
+    background-color: #705A97;
+}
+
+.dark-tag {
+    background-color: #705849;
+}
+
+.dragon-tag {
+    background-color: #7043F4;
+}
+
+.steel-tag {
+    background-color: #B8B9CF;
+}
+
+.fairy-tag {
+    background-color: #EFB7BD;
+}
+
+.tag-text {
+    color: #FFFFFF;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
